@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tapete</title>
+<script src="../../SEW/jquery.js"></script>
+<script>
+$(document).ready(function(e) {
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+var deg = Math.PI/180;
+var colors = ["OrangeRed","LightSkyBlue","Chartreuse","Gold","Orange","PaleVioletRed"];
+ctx.beginPath();
+ctx.rect(0,0,500,500);
+var grd=ctx.createRadialGradient(250,250,Math.floor(Math.random()*250),250,250,Math.floor(Math.random()*500));
+grd.addColorStop(0,colors[Math.floor(Math.random()*6)]);
+grd.addColorStop(1,colors[Math.floor(Math.random()*6)]);
+ctx.stroke();
+ctx.fillStyle = grd;
+ctx.fillRect(0, 0, 500, 500);
+ctx.closePath();
+for(var i=0;i<10;i++){
+	for(var j=0;j<10;j++){
+		ctx.beginPath();
+		ctx.arc(i*50+25,j*50+25,(Math.random()*50)+10,0,360*deg,false);
+		var grd2=ctx.createLinearGradient(i*50+Math.floor(Math.random()*50),j*50+Math.floor(Math.random()*50),i*50+Math.floor(Math.random()*50),j*50+Math.floor(Math.random()*50));
+		grd2.addColorStop(0,colors[Math.floor(Math.random()*6)]);
+		grd2.addColorStop(1,colors[Math.floor(Math.random()*6)]);
+
+		ctx.fillStyle = grd2;
+		ctx.fill();
+		ctx.closePath();
+	}
+}
+for(var i=0;i<Math.floor(1+Math.random()*5);i++) {
+	var pos1 = Math.floor(Math.random()*500);
+	var pos2 = Math.floor(Math.random()*500);
+	ctx.moveTo(pos1,pos2);
+	ctx.beginPath();
+	for(var j =0;j<Math.floor(3+Math.random()*4);j++) {
+		ctx.lineTo(Math.floor(Math.random()*500),Math.floor(Math.random()*500));
+	}
+	ctx.lineTo(pos1,pos2);
+	ctx.fillStyle = colors[Math.floor(Math.random()*6)];
+	ctx.fill();
+	ctx.closePath();
+}
+/*ctx.moveTo(100,100);
+ctx.beginPath();
+ctx.bezierCurveTo(100,100,300,50,400,100);
+ctx.lineTo(400,150);
+ctx.bezierCurveTo(400,150,300,100,100,150);
+ctx.lineTo(100,100);
+ctx.stroke();
+ctx.fillStyle = "red";
+ctx.fill();
+ctx.closePath();
+ctx.moveTo(100,200);
+ctx.beginPath();
+ctx.bezierCurveTo(100,200,300,150,400,200);
+ctx.lineTo(400,250);
+ctx.bezierCurveTo(400,250,300,200,100,250);
+ctx.lineTo(100,200);
+ctx.stroke();
+ctx.fill();
+ctx.closePath();
+ctx.beginPath();
+ctx.moveTo(100,150);
+ctx.lineTo(100,200);
+ctx.moveTo(400,150);
+ctx.lineTo(400,200);
+ctx.stroke();
+ctx.closePath();*/
+});
+</script>
+<style>
+
+</style>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid black">
+</canvas><br>
+<button onClick="location.reload()">Neu</button>
+<h3>Ist das Leben nicht farbenfroh?</h3>
+</body>
+</html>
